@@ -34,3 +34,7 @@ then
   rm .zshrc
   mv .zshrc.1 .zshrc
 fi
+
+mkdir -p $HOME/.config
+
+git clone git@github.com:andis-sprinkis/neovim-user-config.git $HOME/.config/nvim
