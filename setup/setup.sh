@@ -1,11 +1,12 @@
 #!/usr/bin/env sh
 
-# brew
+# install homebrew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
+# update homebrew
 brew update
 
-# command line programs
+# install command-line programs
 brew install \
   wget \
   brew \
@@ -21,34 +22,32 @@ brew install \
   ripgrep \
   lf \
   fzf \
-  zsh \
+  zsh-syntax-highlighting \
   git \
   neovim \
   nvm \
   atool \
   tldr
 
-# iterm2
+# install iterm2
 brew install --cask iterm2
 ## TODO: store and load iterm2 config
 
-
-# use zsh
-chsh -s /usr/bin/zsh
-
+# set .zshrc
 wget --no-cache -P $HOME/ https://raw.githubusercontent.com/andis-sprinkis/linux-user-config/master/.zshrc
 if [ -f $HOME/.zshrc.1 ]
 then
-  rm .zshrc
-  mv .zshrc.1 .zshrc
+  rm $HOME/.zshrc
+  mv $HOME/.zshrc.1 $HOME/.zshrc
 fi
 
 . $HOME/.zshrc
 
-
-# nvm
-## TODO: set and config nvm (node version)
-
+# install node.js
+nvm install --lts
+nvm use --lts
+nvm alias default lts
+. $HOME/.zshrc
 
 # neovim config
 mkdir -p $HOME/.config
