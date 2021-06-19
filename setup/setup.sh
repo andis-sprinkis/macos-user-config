@@ -1,15 +1,21 @@
-#!/usr/bin/env sh
+#!/usr/bin/env zsh
 
-# install homebrew
+# TODO: 
+# - add disable system animations commands
+# - store and load iterm2:
+#  - config
+#  - color scheme
+
+# install and update homebrew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
-# update homebrew
 brew update
 
 # install command-line programs
 brew install \
   wget \
   brew \
+  bat \
+  tree \
   coreutils \
   findutils \
   gnu-tar \
@@ -29,18 +35,16 @@ brew install \
   atool \
   tldr
 
-# install iterm2
+# install GUI applications
 brew install --cask iterm2
-## TODO: store and load iterm2 config
+brew install --cask keepassxc
 
-# set .zshrc
+# get zsh session config
 wget --no-cache -P $HOME/ https://raw.githubusercontent.com/andis-sprinkis/linux-user-config/master/.zshrc
-if [ -f $HOME/.zshrc.1 ]
-then
+if [ -f $HOME/.zshrc.1 ]; then
   rm $HOME/.zshrc
   mv $HOME/.zshrc.1 $HOME/.zshrc
 fi
-
 . $HOME/.zshrc
 
 # install node.js
@@ -49,7 +53,11 @@ nvm use --lts
 nvm alias default lts
 . $HOME/.zshrc
 
-# neovim config
-mkdir -p $HOME/.config
+# install node.js dependencies
+npm install -G yarn
+yarn global lehre
 
+# get neovim config
+mkdir -p $HOME/.config
 git clone git@github.com:andis-sprinkis/neovim-user-config.git $HOME/.config/nvim
+. $HOME/.zshrc
