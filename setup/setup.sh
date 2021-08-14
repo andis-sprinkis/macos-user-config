@@ -51,14 +51,14 @@ get-zsh-session-config() {
     rm $HOME/.zshrc
     mv $HOME/.zshrc.1 $HOME/.zshrc
   fi
-  . $HOME/.zshrc
 }
 
 install-nodejs() {
+  . /usr/local/opt/nvm/nvm.sh
+  [ ! -d $HOME/.nvm ] && mkdir -p $HOME/.nvm && export NVM_DIR=$HOME/.nvm
   nvm install --lts
   nvm use --lts
   nvm alias default lts
-  . $HOME/.zshrc
 }
 
 install-nodejs-deps() {
@@ -68,8 +68,7 @@ install-nodejs-deps() {
 
 get-nvim-config() {
   mkdir -p $HOME/.config
-  git clone git@github.com:andis-sprinkis/neovim-user-config.git $HOME/.config/nvim
-  . $HOME/.zshrc
+  git clone https://github.com/andis-sprinkis/neovim-user-config $HOME/.config/nvim
 }
 
 install-brew
@@ -79,3 +78,4 @@ get-zsh-session-config
 install-nodejs
 install-nodejs-deps
 get-nvim-config
+. $HOME/.zshrc
