@@ -53,15 +53,16 @@ get-zsh-session-config() {
   fi
 }
 
-install-nodejs() {
+install-node-lts() {
+  mkdir -p $HOME/.nvm
+  export NVM_DIR=$HOME/.nvm
   . /usr/local/opt/nvm/nvm.sh
-  [ ! -d $HOME/.nvm ] && mkdir -p $HOME/.nvm && export NVM_DIR=$HOME/.nvm
   nvm install --lts
-  nvm use --lts
+  nvm use lts
   nvm alias default lts
 }
 
-install-nodejs-deps() {
+install-node-deps() {
   npm install -G yarn
   yarn global lehre
 }
@@ -75,7 +76,7 @@ install-brew
 install-cmd-programs
 install-gui-programs
 get-zsh-session-config
-install-nodejs
-install-nodejs-deps
+install-node-lts
+install-node-deps
 get-nvim-config
 . $HOME/.zshrc
