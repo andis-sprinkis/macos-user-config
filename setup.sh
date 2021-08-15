@@ -57,9 +57,9 @@ install-node-lts() {
   mkdir -p $HOME/.nvm
   export NVM_DIR=$HOME/.nvm
   . /usr/local/opt/nvm/nvm.sh
-  nvm install --lts
-  nvm use lts
-  nvm alias default lts
+  nvm install lts/fermium
+  nvm use lts/fermium
+  nvm alias default lts/fermium
 }
 
 install-node-deps() {
