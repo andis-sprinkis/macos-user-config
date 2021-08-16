@@ -17,7 +17,7 @@ echo_script_status() {
   if [ "$1" -eq "1" ]; then; echo_br_bottom "$2 is complete!"; fi 
 }
 
-$scriptname="macOS user session configuration script"
+scriptname="macOS user session configuration script"
 echo_script_status 0 "$scriptname"
 
 install_brew() {
