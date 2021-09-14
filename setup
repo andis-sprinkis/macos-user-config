@@ -52,6 +52,8 @@ install_cmd_programs() {
     neovim \
     nvm \
     atool \
+    python3 \
+    pip3 \
     tldr
 
   echo_fn_status 1 $funcstack[1]
@@ -84,10 +86,10 @@ install_node_lts() {
 
   mkdir -p $HOME/.nvm
   export NVM_DIR=$HOME/.nvm
-  . /usr/local/opt/nvm/nvm.sh
+  . $(brew --prefix)/opt/nvm/nvm.sh
   nvm install lts/fermium
-  nvm use lts/fermium
   nvm alias default lts/fermium
+  nvm use default
 
   echo_fn_status 1 $funcstack[1]
 }
@@ -110,14 +112,6 @@ get_nvim_config() {
   echo_fn_status 1 $funcstack[1]
 }
 
-reload_zshrc() {
-  echo_fn_status 0 $funcstack[1]
-
-  . $HOME/.zshrc
-
-  echo_fn_status 1 $funcstack[1]
-}
-
 setup() {
   install_brew
   install_cmd_programs
@@ -126,7 +120,6 @@ setup() {
   install_node_lts
   install_node_deps
   get_nvim_config
-  reload_zshrc
 }
 
 setup
