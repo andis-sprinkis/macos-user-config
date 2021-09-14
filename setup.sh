@@ -24,7 +24,6 @@ install_brew() {
   echo_fn_status 0 $funcstack[1]
 
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  brew update
 
   echo_fn_status 1 $funcstack[1]
 }
