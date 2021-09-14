@@ -53,7 +53,6 @@ install_cmd_programs() {
     nvm \
     atool \
     python3 \
-    pip3 \
     tldr
 
   echo_fn_status 1 $funcstack[1]
