@@ -96,7 +96,7 @@ install_node_deps() {
   echo_fn_status 0 $funcstack[1]
 
   npm install --global yarn
-  yarn global lehre
+  yarn global add lehre
 
   echo_fn_status 1 $funcstack[1]
 }
