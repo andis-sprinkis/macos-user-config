@@ -16,6 +16,7 @@ echo_script_status() {
   if [ "$1" -eq "0" ]; then; echo_br_bottom "Starting $2..."; fi 
   if [ "$1" -eq "1" ]; then; echo_br_bottom "$2 is complete!"; fi 
 }
+is-exec() { if command="$(command -v "$1")" || [[ -z $command ]] && return 0; return 1 }
 
 scriptname="macOS user session configuration script"
 echo_script_status 0 "$scriptname"
@@ -23,7 +24,7 @@ echo_script_status 0 "$scriptname"
 install_brew() {
   echo_fn_status 0 $funcstack[1]
 
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  is-exec "brew" || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   brew update
 
   echo_fn_status 1 $funcstack[1]
