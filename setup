@@ -56,15 +56,15 @@ install_brew_pkg() {
     unzip \
     tldr
 
-    brew tap homebrew/cask-fonts
+  brew tap homebrew/cask-fonts
 
-    brew install --cask \
-      iterm2 \
-      keepassxc \
-      font-cascadia-code \
-      font-cascadia-code-pl \
-      font-cascadia-mono \
-      font-cascadia-mono-pl
+  brew install --cask \
+    iterm2 \
+    keepassxc \
+    font-cascadia-code \
+    font-cascadia-code-pl \
+    font-cascadia-mono \
+    font-cascadia-mono-pl
 
   echo_fn_status 1 $funcstack[1]
 }
