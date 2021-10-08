@@ -107,7 +107,7 @@ install_nvim_config() {
 
   mkdir -p $HOME/.config
   [ -d $HOME/.config/nvim ] && rm -rf $HOME/.config/nvim
-  git clone https://github.com/andis-sprinkis/neovim-user-config $HOME/.config/nvim
+  git clone https://github.com/andis-sprinkis/nvim-user-config $HOME/.config/nvim
 
   echo_fn_status 1 $funcstack[1]
 }
