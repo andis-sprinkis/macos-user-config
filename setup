@@ -32,39 +32,41 @@ install_brew_pkg() {
   echo_fn_status 0 $funcstack[1]
 
   brew install \
-    wget \
+    atool \
     bat \
-    tree \
     coreutils \
+    fd \
     findutils \
-    gnu-tar \
-    gnu-sed \
-    gawk \
-    gnutls \
-    gnu-indent \
-    gnu-getopt \
-    grep \
-    ripgrep \
-    lf \
     fzf \
-    zsh-syntax-highlighting \
+    gawk \
     git \
+    gnu-getopt \
+    gnu-indent \
+    gnu-sed \
+    gnu-tar \
+    gnutls \
+    grep \
+    lf \
     neovim \
     nvm \
-    atool \
     python3 \
-    unzip \
+    ripgrep \
+    sd \
     tldr
+    tree \
+    unzip \
+    wget \
+    zsh-syntax-highlighting \
 
   brew tap homebrew/cask-fonts
 
   brew install --cask \
-    iterm2 \
-    keepassxc \
     font-cascadia-code \
     font-cascadia-code-pl \
     font-cascadia-mono \
     font-cascadia-mono-pl
+    iterm2 \
+    keepassxc \
 
   echo_fn_status 1 $funcstack[1]
 }
