@@ -52,11 +52,11 @@ install_brew_pkg() {
     python3 \
     ripgrep \
     sd \
-    tldr
+    tldr \
     tree \
     unzip \
     wget \
-    zsh-syntax-highlighting \
+    zsh-syntax-highlighting
 
   brew tap homebrew/cask-fonts
 
@@ -64,9 +64,9 @@ install_brew_pkg() {
     font-cascadia-code \
     font-cascadia-code-pl \
     font-cascadia-mono \
-    font-cascadia-mono-pl
+    font-cascadia-mono-pl \
     iterm2 \
-    keepassxc \
+    keepassxc
 
   echo_fn_status 1 $funcstack[1]
 }
