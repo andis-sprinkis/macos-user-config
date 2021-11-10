@@ -47,6 +47,7 @@ install_brew_pkg() {
     gnutls \
     grep \
     lf \
+    ncdu \
     neovim \
     nvm \
     python3 \
