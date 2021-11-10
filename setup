@@ -33,7 +33,10 @@ install_brew_pkg() {
 
   brew install \
     atool \
+    autossh \
+    bc \
     bat \
+    curl \
     coreutils \
     fd \
     findutils \
@@ -46,6 +49,7 @@ install_brew_pkg() {
     gnu-tar \
     gnutls \
     grep \
+    htop \
     lf \
     ncdu \
     neovim \
@@ -53,6 +57,7 @@ install_brew_pkg() {
     python3 \
     ripgrep \
     sd \
+    translate-shell \
     tldr \
     tree \
     unzip \
