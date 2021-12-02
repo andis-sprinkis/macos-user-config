@@ -20,7 +20,7 @@ install_brew() {
   echo_fn_status 1 $funcstack[1]
 }
 
-install_brew_pkg() {
+install_pkg_brew() {
   echo_fn_status 0 $funcstack[1]
 
   brew tap - $dir/pkg_brew_tap
@@ -63,21 +63,21 @@ install_nodejs() {
   echo_fn_status 1 $funcstack[1]
 }
 
-install_nodejs_pkg() {
+install_pkg_npm() {
   echo_fn_status 0 $funcstack[1]
 
-  npm install --global - $dir/pkg_npm
+  npm install --global - < $dir/pkg_npm
 
   echo_fn_status 1 $funcstack[1]
 }
 
 main() {
   install_brew
-  install_brew_pkg
+  install_pkg_brew
   install_nix_user_config
   install_nvim_user_config
   install_nodejs
-  install_nodejs_pkg
+  install_pkg_npm
 }
 
 main
