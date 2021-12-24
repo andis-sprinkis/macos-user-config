@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 set -e
-#
+
 echo_br_bottom() { echo $1; echo; }
 
 echo_br_top() { echo; echo $1 }
