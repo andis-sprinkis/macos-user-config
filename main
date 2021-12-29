@@ -17,7 +17,7 @@ install_brew() {
 }
 
 install_pkg_brew() {
-  brew tap - $dir/pkg_brew_tap
+  brew tap - < $dir/pkg_brew_tap
   brew install - < $dir/pkg_brew
   brew install --cask - < $dir/pkg_brew_cask
 }
