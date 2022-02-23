@@ -26,5 +26,6 @@ ripgrep
 sd
 translate-shell
 tree
+tree-sitter
 unzip
 wget
