@@ -1,9 +1,5 @@
 #!/usr/bin/env zsh
-# TODO: 
-# - add disable system animations commands
-# - store and load iterm2:
-#  - config
-#  - color scheme
+
 set -e
 dir=$(cd -P -- "$(dirname -- "$0")" && pwd -P)
 . $dir/config
