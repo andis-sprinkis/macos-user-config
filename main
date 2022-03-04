@@ -13,9 +13,9 @@ install_brew() {
 }
 
 install_pkg_brew() {
-  brew tap $(echo $(cat $dir/pkg_brew_tap))
-  brew install $(echo $(cat $dir/pkg_brew))
-  brew install --cask $(echo $(cat $dir/pkg_brew_cask))
+  [ -s $dir/pkg_brew_tap ] && brew tap $(echo $(cat $dir/pkg_brew_tap))
+  [ -s $dir/pkg_brew ] && brew install $(echo $(cat $dir/pkg_brew))
+  [ -s $dir/pkg_brew_cask ] && brew install --cask $(echo $(cat $dir/pkg_brew_cask))
 }
 
 install_nix_user_config() {
@@ -41,7 +41,7 @@ install_nodejs() {
 }
 
 install_pkg_npm() {
-  npm install --global $(echo $(cat $dir/pkg_npm))
+  [ -s $dir/pkg_npm ] && npm install --global $(echo $(cat $dir/pkg_npm))
 }
 
 main() {
