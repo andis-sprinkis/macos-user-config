@@ -1,4 +1,3 @@
-aspell --with-lang-en --with-lang-lv
 atool
 autossh
 bat
