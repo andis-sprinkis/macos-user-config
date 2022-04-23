@@ -5,8 +5,8 @@ dir=$(cd -P -- "$(dirname -- "$0")" && pwd -P)
 . $dir/config
 . $dir/util
 
-scriptname="macOS user session configuration script"
-echo_script_status 0 "$scriptname"
+stage="macOS user session configuration stage"
+echo_stage_status 0 "$stage"
 
 install_brew() {
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -55,4 +55,4 @@ main() {
 }
 
 main
-echo_script_status 1 "$scriptname"
+echo_stage_status 1 "$stage"
