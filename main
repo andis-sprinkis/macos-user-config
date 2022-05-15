@@ -13,35 +13,54 @@ install_brew() {
 }
 
 install_pkg_brew() {
-  [ -s $dir/pkg_brew_tap ] && brew tap $(echo $(cat $dir/pkg_brew_tap))
-  [ -s $dir/pkg_brew ] && brew install $(echo $(cat $dir/pkg_brew))
-  [ -s $dir/pkg_brew_cask ] && brew install --cask $(echo $(cat $dir/pkg_brew_cask))
+  if [ -s $dir/pkg_brew_tap ]; then
+    brew tap $(echo $(cat $dir/pkg_brew_tap))
+  fi
+
+  if [ -s $dir/pkg_brew ]; then
+    brew install $(echo $(cat $dir/pkg_brew))
+  fi
+
+  if [ -s $dir/pkg_brew_cask ]; then
+    brew install --cask $(echo $(cat $dir/pkg_brew_cask))
+  fi
 }
 
 install_nix_user_config() {
-  temp_path=$(mktemp -d)
-  git clone --separate-git-dir=$HOME/.dotfiles_git $cf_git_url_nix_user_config $temp_path
-  rsync --recursive --verbose --exclude '.git' $temp_path/ $HOME
-  git --git-dir=$HOME/.dotfiles_git/ --work-tree=$HOME config --local status.showUntrackedFiles no
-  git --git-dir=$HOME/.dotfiles_git/ --work-tree=$HOME submodule update --init
+  if [ -s "$cf_git_url_nix_user_config" ]; then
+    temp_path=$(mktemp -d)
+    git clone --separate-git-dir=$HOME/.dotfiles_git $cf_git_url_nix_user_config $temp_path
+    rsync --recursive --verbose --exclude '.git' $temp_path/ $HOME
+    git --git-dir=$HOME/.dotfiles_git/ --work-tree=$HOME config --local status.showUntrackedFiles no
+    git --git-dir=$HOME/.dotfiles_git/ --work-tree=$HOME submodule update --init
+  fi
 }
 
 install_nvim_user_config() {
-  [ ! -d $HOME/.config ] && mkdir -p $HOME/.config
-  git clone $cf_git_url_nvim_user_config $HOME/.config/nvim
+  if [ -s "$cf_git_url_nvim_user_config" ]; then
+    if [ ! -d $HOME/.config ]; then
+      mkdir -p $HOME/.config
+    fi
+
+    git clone $cf_git_url_nvim_user_config $HOME/.config/nvim
+  fi
 }
 
 install_nodejs() {
-  mkdir -p $HOME/.nvm
-  export NVM_DIR=$HOME/.nvm
-  . $(brew --prefix)/opt/nvm/nvm.sh
-  nvm install $cf_nvm_default_nodejs_version
-  nvm alias default $cf_nvm_default_nodejs_version
-  nvm use default
+  if [ -s "$cf_nvm_default_nodejs_version" ]; then
+    mkdir -p $HOME/.nvm
+    export NVM_DIR=$HOME/.nvm
+    . $(brew --prefix)/opt/nvm/nvm.sh
+    nvm install $cf_nvm_default_nodejs_version
+    nvm alias default $cf_nvm_default_nodejs_version
+    nvm use default
+  fi
 }
 
 install_pkg_npm() {
-  [ -s $dir/pkg_npm ] && npm install --global $(echo $(cat $dir/pkg_npm))
+  if [ -s $dir/pkg_npm ]; then
+    npm install --global $(echo $(cat $dir/pkg_npm))
+  fi
 }
 
 main() {
