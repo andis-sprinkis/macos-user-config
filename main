@@ -1,4 +1,5 @@
 #!/usr/bin/env zsh
+#test
 
 set -e
 dir=$(cd -P -- "$(dirname -- "$0")" && pwd -P)
