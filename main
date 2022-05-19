@@ -3,7 +3,7 @@
 set -e
 dir=$(cd -P -- "$(dirname -- "$0")" && pwd -P)
 . $dir/config
-. $dir/util
+. $dir/nix-script-util/nix-script-util.zsh
 
 stage="macOS user session configuration stage"
 echo_stage_status 0 "$stage"
