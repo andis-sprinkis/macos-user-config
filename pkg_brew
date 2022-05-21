@@ -24,6 +24,7 @@ nvm
 python3
 ripgrep
 sd
+tmux
 translate-shell
 tree
 tree-sitter
