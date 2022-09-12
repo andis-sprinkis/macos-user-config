@@ -1,5 +1,4 @@
 #!/usr/bin/env zsh
-
 set -e
 dir=$(cd -P -- "$(dirname -- "$0")" && pwd -P)
 . $dir/config
@@ -10,6 +9,8 @@ echo_stage_status 0 "$stage"
 
 install_brew() {
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  echo 'eval $(/opt/homebrew/bin/brew shellenv)' >> /Users/$USER/.zprofile
+  eval $(/opt/homebrew/bin/brew shellenv)
 }
 
 install_pkg_brew() {
