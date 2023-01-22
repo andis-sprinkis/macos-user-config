@@ -1,11 +1,8 @@
 #!/usr/bin/env zsh
 set -e
 dir=$(cd -P -- "$(dirname -- "$0")" && pwd -P)
+. $dir/util
 . $dir/config
-. $dir/nix-script-util/nix-script-util.zsh
-
-stage="macOS user session configuration stage"
-echo_stage_status 0 "$stage"
 
 install_brew() {
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -53,14 +50,28 @@ install_pkg_npm() {
   fi
 }
 
-main() {
+stage_install_brew() {
+  stage="Installing brew"
+  echo_stage_status 0 "$stage"
+
   fn_call \
     "install_brew" \
+
+  echo_stage_status 1 "$stage"
+}
+
+stage_post_install_brew() {
+  stage="Installing user packages and configuration"
+  echo_stage_status 0 "$stage"
+
+  fn_call \
     "install_pkg_brew" \
     "install_user_config" \
     "install_nodejs" \
     "install_pkg_npm"
+
+  echo_stage_status 1 "$stage"
 }
 
-main
-echo_stage_status 1 "$stage"
+[ -z "$1" ] || [ "$1" -eq "0" ] && stage_install_brew
+[ "$1" ] && [ "$1" -eq "1" ] && stage_post_install_brew
