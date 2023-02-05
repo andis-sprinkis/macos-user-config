@@ -3,6 +3,7 @@ autossh
 bat
 bc
 blackhole-2ch
+catimg
 coreutils
 curl
 fd
@@ -26,8 +27,6 @@ python3
 ripgrep
 sd
 tmux
-translate-shell
 tree
-tree-sitter
 unzip
 wget
