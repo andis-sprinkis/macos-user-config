@@ -52,25 +52,23 @@ install_pkg_npm() {
 
 stage_install_brew() {
   stage="Installing brew"
-  echo_stage_status 0 "$stage"
+  print_stage_status 0 "$stage"
 
-  fn_call \
-    "install_brew" \
+  fn_call "install_brew"
 
-  echo_stage_status 1 "$stage"
+  print_stage_status 1 "$stage"
 }
 
 stage_post_install_brew() {
   stage="Installing user packages and configuration"
-  echo_stage_status 0 "$stage"
+  print_stage_status 0 "$stage"
 
-  fn_call \
-    "install_pkg_brew" \
-    "install_user_config" \
-    "install_nodejs" \
-    "install_pkg_npm"
+  fn_call "install_pkg_brew"
+  fn_call "install_user_config"
+  fn_call "install_nodejs"
+  fn_call "install_pkg_npm"
 
-  echo_stage_status 1 "$stage"
+  print_stage_status 1 "$stage"
 }
 
 [ -z "$1" ] || [ "$1" -eq "0" ] && stage_install_brew
