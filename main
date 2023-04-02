@@ -47,7 +47,7 @@ install_nodejs() {
 }
 
 install_pkg_npm() {
-  [ -s $dir/pkg_npm ] && npm install --global $(echo $(cat $dir/pkg_npm))
+  [ -s $dir/pkg_npm ] && volta install $(echo $(cat $dir/pkg_npm))
 }
 
 stage_install_brew() {
