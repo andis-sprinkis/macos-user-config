@@ -2,7 +2,6 @@
 set -e
 dir=$(cd -P -- "$(dirname -- "$0")" && pwd -P)
 . $dir/util
-. $dir/config
 
 install_brew() {
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -25,18 +24,18 @@ install_pkg_brew() {
 }
 
 install_user_config() {
-  local git_url_cfg=https://github.com/andis-sprinkis/nix-user-config
   local dir_cfg_git=$HOME/.dotfiles_git
   local temp_path=$(mktemp -d)
-  git clone --separate-git-dir=$dir_cfg_git $git_url_cfg $temp_path
+  git clone --separate-git-dir=$dir_cfg_git https://github.com/andis-sprinkis/nix-user-config $temp_path
   rsync --recursive --verbose --exclude '.git' $temp_path/ $HOME
   git --git-dir=$dir_cfg_git --work-tree=$HOME config --local status.showUntrackedFiles no
   git --git-dir=$dir_cfg_git --work-tree=$HOME submodule update --init
-  . $HOME/.zhsrc
 }
 
 install_nodejs() {
-  volta install "node@$cf_default_nodejs_version"
+  export VOLTA_HOME="$HOME/.volta"
+  PATH="$VOLTA_HOME/bin:$PATH"
+  volta install "node@18.13.20"
 }
 
 install_pkg_npm() {
