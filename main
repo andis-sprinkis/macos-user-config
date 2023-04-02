@@ -36,7 +36,7 @@ install_user_config() {
 }
 
 install_nodejs() {
-  volta install node@$cf_default_nodejs_version
+  volta install "node@$cf_default_nodejs_version"
 }
 
 install_pkg_npm() {
