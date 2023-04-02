@@ -1,7 +1,23 @@
 #!/usr/bin/env zsh
 set -e
 dir=$(cd -P -- "$(dirname -- "$0")" && pwd -P)
-. $dir/util
+
+print_br_bottom() { echo $1; echo }
+print_br_top() { echo; echo $1 }
+print_br_both() { echo; echo $1; echo }
+
+fn_call() {
+  for fn in "$@"; do
+    print_br_bottom "Function $fn has started..."
+    $fn
+    print_br_bottom "Function $fn has completed!"
+  done
+}
+
+print_stage_status() {
+  [ "$1" -eq "0" ] && print_br_bottom "Starting $2 stage..." 
+  [ "$1" -eq "1" ] && print_br_bottom "$2 stage has completed!"
+}
 
 install_brew() {
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -10,17 +26,9 @@ install_brew() {
 }
 
 install_pkg_brew() {
-  if [ -s $dir/pkg_brew_tap ]; then
-    brew tap $(echo $(cat $dir/pkg_brew_tap))
-  fi
-
-  if [ -s $dir/pkg_brew ]; then
-    brew install $(echo $(cat $dir/pkg_brew))
-  fi
-
-  if [ -s $dir/pkg_brew_cask ]; then
-    brew install --cask $(echo $(cat $dir/pkg_brew_cask))
-  fi
+  [ -s $dir/pkg_brew_tap ] && brew tap $(echo $(cat $dir/pkg_brew_tap))
+  [ -s $dir/pkg_brew ] && brew install $(echo $(cat $dir/pkg_brew))
+  [ -s $dir/pkg_brew_cask ] && brew install --cask $(echo $(cat $dir/pkg_brew_cask))
 }
 
 install_user_config() {
@@ -39,9 +47,7 @@ install_nodejs() {
 }
 
 install_pkg_npm() {
-  if [ -s $dir/pkg_npm ]; then
-    npm install --global $(echo $(cat $dir/pkg_npm))
-  fi
+  [ -s $dir/pkg_npm ] && npm install --global $(echo $(cat $dir/pkg_npm))
 }
 
 stage_install_brew() {
