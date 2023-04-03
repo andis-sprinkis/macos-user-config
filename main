@@ -43,7 +43,7 @@ install_user_config() {
 install_nodejs() {
   export VOLTA_HOME="$HOME/.volta"
   PATH="$VOLTA_HOME/bin:$PATH"
-  volta install "node@18.13.20"
+  volta install "node@18.13.0"
 }
 
 install_pkg_npm() {
