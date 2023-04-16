@@ -40,14 +40,16 @@ install_user_config() {
   git --git-dir=$dir_cfg_git --work-tree=$HOME submodule update --init
 }
 
-install_nodejs() {
-  export VOLTA_HOME="$HOME/.volta"
+install_pkg_npm() {
+  export VOLTA_HOME="$HOME/.local/share/volta"
   PATH="$VOLTA_HOME/bin:$PATH"
-  volta install "node@18.13.0"
+  [ -s $dir/pkg_npm ] && volta install $(echo $(cat $dir/pkg_npm))
 }
 
-install_pkg_npm() {
-  [ -s $dir/pkg_npm ] && volta install $(echo $(cat $dir/pkg_npm))
+install_nvim_config() {
+  mkdir "$HOME/.config"
+  cd "$HOME/.config"
+  git clone https://github.com/andis-sprinkis/nvim-user-config nvim
 }
 
 stage_install_brew() {
@@ -65,8 +67,8 @@ stage_post_install_brew() {
 
   fn_call "install_pkg_brew"
   fn_call "install_user_config"
-  fn_call "install_nodejs"
   fn_call "install_pkg_npm"
+  fn_call "install_nvim_config"
 
   print_stage_status 1 "$stage"
 }
