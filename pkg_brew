@@ -23,6 +23,7 @@ lf
 ncdu
 neovim
 python3
+pipenv
 ripgrep
 sd
 tmux
