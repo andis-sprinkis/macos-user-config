@@ -12,7 +12,7 @@
    git clone https://github.com/andis-sprinkis/macos-user-config $HOME/macos-user-config
    cd $HOME/macos-user-config
    ```
-1. Install the Homebrew packages.
+1. Install Homebrew packages.
    ```sh
    [ -s ./pkg_brew_tap ] && brew tap $(echo $(cat ./pkg_brew_tap))
    [ -s ./pkg_brew ] && brew install $(echo $(cat ./pkg_brew))
