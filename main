@@ -32,12 +32,13 @@ install_pkg_brew() {
 }
 
 install_user_config() {
-  local dir_cfg_git=$HOME/.dotfiles_git
-  local temp_path=$(mktemp -d)
-  git clone --separate-git-dir=$dir_cfg_git https://github.com/andis-sprinkis/nix-user-config $temp_path
-  rsync --recursive --verbose --exclude '.git' $temp_path/ $HOME
-  git --git-dir=$dir_cfg_git --work-tree=$HOME config --local status.showUntrackedFiles no
-  git --git-dir=$dir_cfg_git --work-tree=$HOME submodule update --init
+  mkdir -p "$HOME/.local/state"
+  dir_git="$HOME/.local/state/dotfiles_git"
+  dir_tmp=$(mktemp -d)
+  git clone --separate-git-dir=$dir_git https://github.com/andis-sprinkis/nix-user-config $dir_tmp
+  rsync --recursive --verbose --exclude '.git' $dir_tmp/ $HOME
+  git --git-dir=$dir_git --work-tree=$HOME config --local status.showUntrackedFiles no
+  git --git-dir=$dir_git --work-tree=$HOME submodule update --init
 }
 
 install_pkg_npm() {
