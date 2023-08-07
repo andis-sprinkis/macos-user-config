@@ -40,3 +40,9 @@
    cd $HOME/.config
    git clone https://github.com/andis-sprinkis/nvim-user-config nvim
    ```
+1. Increase the keyboard key repetition rate.
+   ```sh
+   defaults write -g ApplePressAndHoldEnabled -bool false
+   defaults write -g InitialKeyRepeat -int 9
+   defaults write -g KeyRepeat -int 1
+   ```
