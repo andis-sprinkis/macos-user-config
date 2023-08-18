@@ -40,9 +40,18 @@
    cd $HOME/.config
    git clone https://github.com/andis-sprinkis/nvim-user-config nvim
    ```
-1. Increase the keyboard key repetition rate.
+1. Disable Dock show and hide transition.
    ```sh
-   defaults write -g ApplePressAndHoldEnabled -bool false
-   defaults write -g InitialKeyRepeat -int 9
-   defaults write -g KeyRepeat -int 1
+   defaults write com.apple.dock autohide-delay -float 0; killall Dock
    ```
+1. Enable showing hidden files in Finder.
+   ```sh
+   defaults write com.apple.Finder AppleShowAllFiles true; killall Finder
+   ```
+1. Increase the keyboard key repetition rate.
+   1. ```sh
+      defaults write -g ApplePressAndHoldEnabled -bool false
+      defaults write -g InitialKeyRepeat -int 9
+      defaults write -g KeyRepeat -int 1
+      ```
+   1. Log out and log in.
