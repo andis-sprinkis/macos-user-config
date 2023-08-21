@@ -21,10 +21,11 @@ jq
 lf
 ncdu
 neovim
-python3
 pipenv
+python3
 ripgrep
 sd
+sqlite
 tmux
 tree
 unzip
