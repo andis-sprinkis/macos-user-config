@@ -25,7 +25,6 @@ pipenv
 python3
 ripgrep
 sd
-sqlite
 tmux
 tree
 unzip
