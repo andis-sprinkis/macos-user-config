@@ -1,0 +1,47 @@
+#!/usr/bin/env sh
+set -e
+
+echo "
+brew upgrade:
+"
+brew update
+
+echo "
+System upgrade:
+"
+brew upgrade
+
+[ -s ./pkg_brew_tap ] && {
+  echo "
+Install brew tap:
+"
+  brew tap $(echo $(< ./pkg_brew_tap))
+}
+
+[ -s ./pkg_brew ] && {
+  echo "
+Install brew packages:
+"
+  brew install $(echo $(< ./pkg_brew))
+}
+
+[ -s ./pkg_brew_cask ] && {
+  echo "
+Install brew cask:
+"
+  brew install --cask $(echo $(< ./pkg_brew_cask))
+}
+
+[ -s "./pkg_pypi" ] && {
+  echo "
+PyPI packages installation:
+"
+  for p in $(echo $(< ./pkg_pypi)); do pipx install $p; done
+}
+
+[ -s "./pkg_npm" ] && {
+  echo "
+npm packages installation:
+"
+  volta install $(echo $(< ./pkg_npm))
+}

@@ -35,6 +35,10 @@
     cd $HOME/macos-user-config
     [ -s ./pkg_npm ] && volta install $(echo $(< ./pkg_npm))
     ```
+1. Install PyPi packages.
+    ```sh
+    [ -s ./pkg_pypi ] && for p in $(echo $(< ./pkg_pypi)); do pipx install $p; done
+    ```
 1. Install user Neovim configuration.
     ```sh
     cd $HOME/.config
